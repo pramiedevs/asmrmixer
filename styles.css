@@ -1,0 +1,138 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body and Main Layout */
+body {
+    background-color: #1e1e2f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2a2a3b;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d0d0ff;
+}
+
+.theme-toggle {
+    margin-top: 10px;
+}
+
+.theme-toggle button {
+    background-color: #f57e7e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    background-color: #b843a8;
+}
+/* Input Section */
+.input-section {
+    text-align: center;
+    margin: 20px;
+}
+
+.url-inputs {
+    margin-bottom: 10px;
+}
+
+.url-input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 2px solid #444;
+    border-radius: 5px;
+    background-color: #2a2a3b;
+    color: #fff;
+    display: block; /* Ensures inputs are stacked vertically */
+    font-size: 1rem;
+}
+
+.url-input::placeholder {
+    color: #888; /* Matches your theme */
+}
+
+#submit-button {
+    background-color: #5a5acd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit-button:hover {
+    background-color: #7a7aed;
+}
+
+.radio-buttons {
+    margin: 10px 0;
+}
+
+.radio-buttons label {
+    margin: 0 10px;
+}
+
+
+/* Video Container */
+.video-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.video-player {
+    width: 45%;
+    height: 300px;
+    margin: 0 10px;
+    background-color: #2a2a3b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.video-player .placeholder {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 10px;
+    background-color: #2a2a3b;
+}
+
+footer a {
+    color: #5a5acd;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

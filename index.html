@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASMR Mixer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">ASMR MIXER</h1>
+        <p class="tagline">
+            A free tool for rediscovering the ASMR universe, curing tingle immunity, and finding ultimate relaxation.
+        </p>
+        
+        <div class="theme-toggle">
+            <button id="grey-violet">Dark Mode</button>
+            <button id="red-orange">Cozy Mode</button>
+        </div>
+    </header>
+    <main>
+        <div class="input-section">
+            <div class="radio-buttons">
+                <label>
+                    <input type="radio" name="mode" value="left" checked>
+                    Left Screen
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="right">
+                    Right Screen
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="single-playlist">
+                    Single Playlist
+                </label>
+                <label>
+                    <input type="radio" name="mode" value="dual-playlist">
+                    Dual Playlist
+                </label>
+            </div>
+            <div class="url-inputs">
+                <input type="text" class="url-input" id="url-input-1" placeholder="Paste YouTube URL" />
+                <input type="text" class="url-input" id="url-input-2" placeholder="Paste YouTube URL (Right)" style="display: none;" />
+            </div>
+            <button id="submit-button">Load</button>
+        </div>
+        
+        
+        <div class="video-container">
+            <div class="video-player" id="left-player">
+                <div class="placeholder">Left Player (Off)</div>
+            </div>
+            <div class="video-player" id="right-player">
+                <div class="placeholder">Right Player (Off)</div>
+            </div>
+        </div>
+        <div class="disclaimer">
+            <p>
+                To load a video, simply copy the URL from your browser's address bar or use the "Share" button on YouTube to copy the link and paste it here. 
+                <br> 
+                Note: Some videos are restricted from being embedded and can only be played directly on YouTube.
+            </p>
+            <p>
+                This website does not own any of the media being played. Videos are streamed directly from YouTube, and no content is stored on this site. 
+                We do not charge for streaming content owned by others.
+            </p>
+        </div>
+        
+    </main>
+    <footer>
+        <p>© 2025 ASMR Mixer | <a href="#">About</a> | <a href="#">Support</a> | <a href="#">Feedback</a></p>
+    </footer>
+    <script src="theme.js"></script>
+    <script src="loadVideo.js"></script>
+
+</body>
+</html>
