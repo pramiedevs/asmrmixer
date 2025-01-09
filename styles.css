@@ -14,24 +14,54 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+#grey-violet{
+    position: absolute;
+    top:20px;
+    left: 30px;
+}
+#red-orange{
+    position: absolute;
+    top:20px;
+    right: 30px;
+}
 
 header {
-    background-color: #2a2a3b;
+    background: #5a5acd;
     padding: 20px;
     text-align: center;
     position: sticky;
     top: 0;
     z-index: 10;
+    border-bottom: white solid 2px;
+}
+
+@font-face {
+    font-family: 'Hostania';
+    src: url('./hostania/Hostania.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Hostania-Oblique';
+    src: url('./hostania/Hostania\ Oblique.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .logo {
-    font-size: 2rem;
+    font-family: 'Hostania-Oblique', sans-serif; /* Fallback to sans-serif */
+    font-size: 2.5rem;
     font-weight: bold;
     color: #d0d0ff;
+    text-align: center;
+    margin: 10px 0;
 }
 
 .theme-toggle {
     margin-top: 10px;
+}
+.tagline{
+    color:white;
 }
 
 .theme-toggle button {
@@ -43,6 +73,7 @@ header {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Hostania', sans-serif; /* Fallback to sans-serif */
 }
 
 .theme-toggle button:hover {
@@ -83,6 +114,19 @@ header {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+.tingles-button {
+    background-color: #5a5acd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+.tingles-button:hover {
+    background-color: #7a7aed;
+}
 
 #submit-button:hover {
     background-color: #7a7aed;
@@ -100,9 +144,25 @@ header {
 /* Video Container */
 .video-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 20px;
 }
+.controls{
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 100px;
+}
+.player{
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    flex-direction: row;
+}
+
 
 .video-player {
     width: 45%;
@@ -119,7 +179,10 @@ header {
     color: #888;
     font-size: 1.2rem;
 }
-
+.disclaimer{
+    text-align: center;
+    font-size: small;
+}
 /* Footer */
 footer {
     margin-top: auto;

@@ -1,18 +1,25 @@
-// Wait for the DOM to fully load
 document.addEventListener("DOMContentLoaded", () => {
-    // Select theme buttons
+    // Select the theme toggle buttons
     const greyVioletButton = document.getElementById("grey-violet");
     const redOrangeButton = document.getElementById("red-orange");
 
-    // Define color palettes
+    // Define the themes
     const themes = {
+        "default-light": {
+            background: "#ffcff6",
+            header: "#5a5acd",
+            text: "#000",
+            buttonBackground: "#edc8ca",
+            buttonHover: "#b843a8",
+            playerBackground: "#2a2a3b",
+        },
         "grey-violet": {
-            background: "#1e1e2f",
+            background: "#0e1324",
             header: "#202022",
             text: "#d0d0ff",
             buttonBackground: "#f57e7e",
             buttonHover: "#b843a8",
-            playerBackground: "#2a2a3b",
+            playerBackground: "#000",
         },
         "red-orange": {
             background: "#f1896e",
@@ -20,47 +27,62 @@ document.addEventListener("DOMContentLoaded", () => {
             text: "#ffddcc",
             buttonBackground: "#f57e7e",
             buttonHover: "#2a2a3b",
-            playerBackground: "#913d3d",
+            playerBackground: "#2f2132",
         },
     };
 
+    let currentTheme = "default-light"; // Start with the default theme
+
+    // Apply the default theme when the page loads
+    applyTheme(currentTheme);
+
+    // Add click event listeners for the theme buttons
+    greyVioletButton.addEventListener("click", () => toggleTheme("grey-violet"));
+    redOrangeButton.addEventListener("click", () => toggleTheme("red-orange"));
+
+    // Function to toggle between themes
+    function toggleTheme(selectedTheme) {
+        // Toggle back to the default theme if the same button is clicked again
+        currentTheme = currentTheme === selectedTheme ? "default-light" : selectedTheme;
+        applyTheme(currentTheme);
+    }
+
     // Function to apply a theme
-    const applyTheme = (theme) => {
+    function applyTheme(themeName) {
+        const theme = themes[themeName];
+        if (!theme) return; // Exit if theme doesn't exist
+
+        // Apply theme styles
         document.body.style.backgroundColor = theme.background;
-        document.querySelector("header").style.backgroundColor = theme.header;
-        document.querySelector("header .logo").style.color = theme.text;
-        document.querySelectorAll(".theme-toggle button").forEach((button) => {
-            button.style.backgroundColor = theme.buttonBackground;
+
+        const header = document.querySelector(".header");
+        if (header) {
+            header.style.backgroundColor = theme.header;
+            header.style.color = theme.text;
+        }
+
+        // Style the buttons
+        const buttons = document.querySelectorAll(".theme-toggle button");
+        buttons.forEach((btn) => {
+            btn.style.backgroundColor = theme.buttonBackground;
+            btn.style.color = theme.text;
+
+            btn.addEventListener("mouseover", () => {
+                btn.style.backgroundColor = theme.buttonHover;
+            });
+
+            btn.addEventListener("mouseout", () => {
+                btn.style.backgroundColor = theme.buttonBackground;
+            });
         });
-        document.querySelectorAll(".video-player").forEach((player) => {
+
+        // Style the video players
+        const players = document.querySelectorAll(".video-player");
+        players.forEach((player) => {
             player.style.backgroundColor = theme.playerBackground;
         });
-    };
 
-    // Add hover effects dynamically
-    const addHoverEffects = (theme) => {
-        document.querySelectorAll(".theme-toggle button").forEach((button) => {
-            button.addEventListener("mouseover", () => {
-                button.style.backgroundColor = theme.buttonHover;
-            });
-            button.addEventListener("mouseout", () => {
-                button.style.backgroundColor = theme.buttonBackground;
-            });
-        });
-    };
-
-    // Event listeners for theme buttons
-    greyVioletButton.addEventListener("click", () => {
-        applyTheme(themes["grey-violet"]);
-        addHoverEffects(themes["grey-violet"]);
-    });
-
-    redOrangeButton.addEventListener("click", () => {
-        applyTheme(themes["red-orange"]);
-        addHoverEffects(themes["red-orange"]);
-    });
-
-    // Set default theme
-    applyTheme(themes["grey-violet"]);
-    addHoverEffects(themes["grey-violet"]);
+        // Update text color for the entire document
+        document.body.style.color = theme.text;
+    }
 });

@@ -8,17 +8,26 @@
 </head>
 <body>
     <header>
-        <h1 class="logo">ASMR MIXER</h1>
-        <p class="tagline">
-            A free tool for rediscovering the ASMR universe, curing tingle immunity, and finding ultimate relaxation.
-        </p>
-        
         <div class="theme-toggle">
             <button id="grey-violet">Dark Mode</button>
             <button id="red-orange">Cozy Mode</button>
         </div>
+        <h1 class="logo">ASMR MIXER</h1>
+        <p class="tagline">
+            A free tool for rediscovering the ASMR universe, curing tingle immunity, and finding ultimate relaxation.
+        </p>      
     </header>
     <main>
+        <div class="disclaimer">
+            <br>
+            <p>
+                To load a video, simply copy the URL from your browser's address bar or use the "Share" button on YouTube to copy the link and paste it here. 
+                <br> <br>
+                Note: Some videos are restricted from being embedded and can only be played directly on YouTube.
+            </p>
+            <br>
+        </div>
+        
         <div class="input-section">
             <div class="radio-buttons">
                 <label>
@@ -47,23 +56,43 @@
         
         
         <div class="video-container">
+            <div class="player">
+                <!-- Left Video Player -->
             <div class="video-player" id="left-player">
                 <div class="placeholder">Left Player (Off)</div>
-            </div>
+            </div>           
+        
+            <!-- Right Video Player -->
             <div class="video-player" id="right-player">
                 <div class="placeholder">Right Player (Off)</div>
             </div>
+            </div>      
+            <div class="controls">
+                <!-- Left Audio Settings -->
+            <div class="audio-settings-L">
+                <label for="pan-left">Left Player Panning:</label>
+                <input type="range" id="pan-left" min="-1" max="1" step="0.01" value="-1">
+            </div>
+            <!-- "Tingles" Button -->
+            <div class="tingles-button-container">
+                <button id="tingles-button" class="tingles-button">Tingles</button>
+            </div>
+            <!-- Right Audio Settings -->
+            <div class="audio-settings-R">
+                <label for="pan-right">Right Player Panning:</label>
+                <input type="range" id="pan-right" min="-1" max="1" step="0.01" value="1">
+            </div>
+            </div>
         </div>
+        <div class="effects"></div>
+        <br>
+        
         <div class="disclaimer">
-            <p>
-                To load a video, simply copy the URL from your browser's address bar or use the "Share" button on YouTube to copy the link and paste it here. 
-                <br> 
-                Note: Some videos are restricted from being embedded and can only be played directly on YouTube.
-            </p>
             <p>
                 This website does not own any of the media being played. Videos are streamed directly from YouTube, and no content is stored on this site. 
                 We do not charge for streaming content owned by others.
             </p>
+            <br>
         </div>
         
     </main>
@@ -72,6 +101,8 @@
     </footer>
     <script src="theme.js"></script>
     <script src="loadVideo.js"></script>
+    <script src="webAudio.js"></script>
+    <script src="effects.js"></script>
 
 </body>
 </html>
