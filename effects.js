@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
+    // Create the effects container
+    const effectsContainer = document.querySelector(".effects");
+    
     // Create basic structure for effect buttons
-    const effectsContainer = document.createElement("div");
-    effectsContainer.id = "effects-container";
-    effectsContainer.style.textAlign = "center";
-    effectsContainer.style.margin = "20px";
-
-    // Create "Effects" button
     const effectsButton = document.createElement("button");
     effectsButton.textContent = "Effects";
+    effectsButton.classList.add("controls");
     effectsButton.style.padding = "10px 20px";
     effectsButton.style.fontSize = "16px";
     effectsButton.style.cursor = "pointer";
 
-    document.body.appendChild(effectsContainer);
     effectsContainer.appendChild(effectsButton);
 
     // Delay and Chorus effect variables
@@ -22,9 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // When "Effects" button is clicked
     effectsButton.addEventListener("click", () => {
+        // Create "Close" button
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "X";
+        closeButton.classList.add("controls");
+        closeButton.style.padding = "5px 10px";
+        closeButton.style.fontSize = "16px";
+        closeButton.style.cursor = "pointer";
+        closeButton.style.backgroundColor = "red";
+        closeButton.style.color = "#fff";
+
+        // Append the close button to the effects container
+        effectsContainer.appendChild(closeButton);
+
         // Add Delay button
         const delayButton = document.createElement("button");
         delayButton.textContent = "Delay";
+        delayButton.classList.add("controls");
         delayButton.style.margin = "10px";
         delayButton.style.padding = "10px 20px";
         delayButton.style.fontSize = "16px";
@@ -33,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add Chorus button
         const chorusButton = document.createElement("button");
         chorusButton.textContent = "Chorus";
+        chorusButton.classList.add("controls");
         chorusButton.style.margin = "10px";
         chorusButton.style.padding = "10px 20px";
         chorusButton.style.fontSize = "16px";
@@ -79,6 +91,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 effectsContainer.appendChild(chorusMixSlider);
             }
+        });
+
+        // Close button functionality
+        closeButton.addEventListener("click", () => {
+            // Hide the effect buttons and sliders
+            delayButton.style.display = "none";
+            chorusButton.style.display = "none";
+            delayTimeSlider.style.display = "none";
+            chorusMixSlider.style.display = "none";
+            closeButton.style.display = "none";
         });
 
         // Disable "Effects" button after adding buttons
