@@ -139,7 +139,7 @@ header {
 }
 
 .theme-toggle {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .tagline{
     color:white;
@@ -310,9 +310,29 @@ header {
     background-color: #5a5acd; /* Change color when checked */
   }
   
-  
+  .selections{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    flex-wrap: wrap;
+  }
 
+.tryOn{
+    margin-left: 10px;
+    padding: 7px 10px;
+    background-color: #5a5acd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.tryOn:hover {
+    background-color: #7a7aed;
+}
 
 /* Video Container */
 .video-container {
@@ -392,6 +412,7 @@ header {
     z-index: 2;
 }
 .disclaimer{
+    margin-top: 20px;
     text-align: center;
     font-size: small;
 }
