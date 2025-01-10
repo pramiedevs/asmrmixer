@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (leftPlayer) {
             toggleLoop(leftLoopButton, leftPlayer);
         } else {
-            alert("Left player is not initialized.");
+            alert("Left player is not initialized. Please Load a video. Thanks =)");
         }
     });
 
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (rightPlayer) {
             toggleLoop(rightLoopButton, rightPlayer);
         } else {
-            alert("Right player is not initialized.");
+            alert("Right player is not initialized. Please Load a video. Thanks =)");
         }
     });
 
@@ -178,10 +178,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 leftPlayer.playVideoAt(leftIndex);
                 rightPlayer.playVideoAt(rightIndex);
             } else {
-                alert("Please load a playlist before using shuffle.");
+                alert("Please load a playlist before using shuffle. Thanks =)");
             }
         } else {
-            alert("Please load both players before using shuffle.");
+            alert("Please load a playlist before using shuffle. Thanks =)");
         }
     });
 

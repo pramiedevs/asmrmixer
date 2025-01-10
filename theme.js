@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     // Select the theme toggle buttons
     const greyVioletButton = document.getElementById("grey-violet");
@@ -22,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             playerBackground: "#000",
         },
         "red-orange": {
-            background: "#f1896e",
+            background: "#dfa08f",
             header: "#913d3d",
             text: "#ffddcc",
             buttonBackground: "#f57e7e",
@@ -52,10 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const theme = themes[themeName];
         if (!theme) return; // Exit if theme doesn't exist
 
-        // Apply theme styles
+        // Apply theme styles to the body
         document.body.style.backgroundColor = theme.background;
+        document.body.style.color = theme.text;
 
-        const header = document.querySelector(".header");
+        // Apply styles to the header
+        const header = document.querySelector("header");
         if (header) {
             header.style.backgroundColor = theme.header;
             header.style.color = theme.text;
@@ -67,13 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.style.backgroundColor = theme.buttonBackground;
             btn.style.color = theme.text;
 
-            btn.addEventListener("mouseover", () => {
-                btn.style.backgroundColor = theme.buttonHover;
-            });
-
-            btn.addEventListener("mouseout", () => {
-                btn.style.backgroundColor = theme.buttonBackground;
-            });
+            // Update hover styles without adding multiple listeners
+            btn.onmouseover = () => (btn.style.backgroundColor = theme.buttonHover);
+            btn.onmouseout = () => (btn.style.backgroundColor = theme.buttonBackground);
         });
 
         // Style the video players
@@ -81,8 +82,5 @@ document.addEventListener("DOMContentLoaded", () => {
         players.forEach((player) => {
             player.style.backgroundColor = theme.playerBackground;
         });
-
-        // Update text color for the entire document
-        document.body.style.color = theme.text;
     }
 });

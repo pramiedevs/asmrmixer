@@ -55,8 +55,8 @@
                 <input type="text" class="url-input" id="url-input-2" placeholder="Paste YouTube URL (Right)" style="display: none;" />
             </div>
             <button id="submit-button">Load</button>
-            <button id="shuffle-button">Shuffle</button>
-            <button id="reset-button">Reset</button>
+            <button id="shuffle-button" class="margin-left">Shuffle</button>
+            <button id="reset-button" class="margin-left">Reset</button>
 
         </div>
         
@@ -76,15 +76,15 @@
             <div class="controls">
                 <!-- Left Audio Settings -->
                 <div class="audio-settings-L">
-                    <label for="volume-left">Left Player Volume:</label>
-                    <input type="range" id="volume-left" min="0" max="100" step="1" value="100">
-                    <button id="loop-button-left">Loop Off</button>
+                    <label for="volume-left">Left Player Volume</label>
+                    <input type="range" id="volume-left" min="0" max="100" step="1" value="90">
+                    <button id="loop-button-left" class="tingles-button">Loop Off</button>
                 </div>
                 <!-- Right Audio Settings -->
                 <div class="audio-settings-R">
-                    <label for="volume-right">Right Player Volume:</label>
-                    <input type="range" id="volume-right" min="0" max="100" step="1" value="100">
-                    <button id="loop-button-right">Loop Off</button>
+                    <button id="loop-button-right" class="tingles-button">Loop Off</button>
+                    <input type="range" id="volume-right" min="0" max="100" step="1" value="90">
+                    <label for="volume-right">Right Player Volume</label>
                 </div>
                 <!-- "Tingles" Button (Commented Out) -->
                 <!--
