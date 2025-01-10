@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Define the themes
     const themes = {
         "default-light": {
-            background: "#ffcff6",
+            background: "#b58bdb",
             header: "#5a5acd",
             text: "#000",
             buttonBackground: "#edc8ca",
