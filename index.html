@@ -10,46 +10,64 @@
 </head>
 <body>
     <header>
-        <div class="theme-toggle front">
-            <button id="grey-violet">Dark Mode</button>
-            <button id="red-orange">Cozy Mode</button>
-        </div>
         <h1 class="logo front">ASMR MIXER</h1>
         <p class="tagline front">
             A free tool for rediscovering the ASMR universe, curing tingle immunity, and finding ultimate relaxation.
-        </p>      
+        </p>
+        <div class="nav">
+            <div class="theme-toggle">
+                <button id="grey-violet">Dark Mode</button>
+                <button id="red-orange">Cozy Mode</button>
+            </div>
+            
+        </div>      
     </header>
     <main>
+        <div style="display: flex; flex-direction: row;">
+            <h4>Try some of our selections &nbsp =)</h4>
+            <button>Infinite Tapping</button>
+            <button>Dual Medical Exams</button>
+            <button>Fast and Slow</button>
+            <button>Bilingual</button>
+            <button>Sci-Fi meets lo-fi</button>
+            <button>Music Atmosphere</button>
+
+        </div>
         
-        <div class="disclaimer front">
+        <div class="disclaimer">
             <br>
-            <p>
+            <h4 class="h4">
                 To load a video, simply copy the URL from your browser's address bar or use the "Share" button on YouTube to copy the link and paste it here. 
                 <br> <br>
                 Note: Some videos are restricted from being embedded and can only be played directly on YouTube.
-            </p>
+            </h4>
             <br>
         </div>
         
         <div class="input-section">
             <div class="radio-buttons">
-                <label>
+                <label class="radio-label">
                     <input type="radio" name="mode" value="left" checked>
+                    <span class="radio-custom"></span>
                     Left Screen
                 </label>
-                <label>
+                <label class="radio-label">
                     <input type="radio" name="mode" value="right">
+                    <span class="radio-custom"></span>
                     Right Screen
                 </label>
-                <label>
+                <label class="radio-label">
                     <input type="radio" name="mode" value="single-playlist">
+                    <span class="radio-custom"></span>
                     Single Playlist
                 </label>
-                <label>
+                <label class="radio-label">
                     <input type="radio" name="mode" value="dual-playlist">
+                    <span class="radio-custom"></span>
                     Dual Playlist
                 </label>
             </div>
+            
             <div class="url-inputs">
                 <input type="text" class="url-input" id="url-input-1" placeholder="Paste YouTube URL" />
                 <input type="text" class="url-input" id="url-input-2" placeholder="Paste YouTube URL (Right)" style="display: none;" />
@@ -76,7 +94,7 @@
             <div class="controls">
                 <!-- Left Audio Settings -->
                 <div class="audio-settings-L">
-                    <label for="volume-left">Left Player Volume</label>
+                    <label for="volume-left">Left Player Volume&nbsp;&nbsp;</label>
                     <input type="range" id="volume-left" min="0" max="100" step="1" value="90">
                     <button id="loop-button-left" class="tingles-button">Loop Off</button>
                 </div>

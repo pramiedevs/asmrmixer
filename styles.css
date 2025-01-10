@@ -5,6 +5,73 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+@media screen and (max-width: 320px) {
+    /* Add your styles here */
+    body {
+        font-size: 12px;
+    }
+    .video-player {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Add your styles here */
+    body {
+        font-size: 14px;
+    }
+    .header {
+        padding: 10px;
+    }
+    .video-player {
+        width: 100%;
+        height: 250px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    /* Add your styles here */
+    body {
+        font-size: 16px;
+    }
+    .header {
+        padding: 15px;
+    }
+    .video-player {
+        width: 48%; /* Two video players side by side */
+        margin: 1%;
+    }
+    .controls{
+        flex-direction: column!important;
+    }
+    .audio-settings-R{
+        flex-direction: row-reverse;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+    /* Add your styles here */
+    body {
+        font-size: 20px;
+    }
+    .header {
+        padding: 25px;
+    }
+    .video-player {
+        width: 40%;
+        height: 350px;
+    }
+}
+@media screen and (orientation: portrait) {
+    /* Styles for portrait mode */
+}
+
+@media screen and (orientation: landscape) {
+    /* Styles for landscape mode */
+}
 
 /* Body and Main Layout */
 body {
@@ -27,14 +94,10 @@ body {
 }
 
 #grey-violet{
-    position: absolute;
-    top:20px;
-    left: 30px;
+    
 }
 #red-orange{
-    position: absolute;
-    top:20px;
-    right: 30px;
+    
 }
 
 header {
@@ -173,14 +236,81 @@ header {
 #reset-button:hover {
     background-color: #7a7aed;
 }
-
+/* Style the container */
 .radio-buttons {
-    margin: 10px 0;
-}
-
-.radio-buttons label {
-    margin: 0 10px;
-}
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  /* Hide the default radio button */
+  input[type="radio"] {
+    display: none;
+  }
+  
+  /* Label styling */
+  .radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    position: relative;
+    padding-left: 35px; /* Space for the custom radio */
+    color: #7a4de4;
+    transition: color 0.3s ease;
+  }
+  
+  .radio-label:hover {
+    color: #7474ec; /* Change text color on hover */
+  }
+  
+  /* Custom radio button */
+  .radio-custom {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #53318a;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Checked state: Add color and fill */
+  input[type="radio"]:checked + .radio-custom {
+    background-color: #5a5acd; /* Active color */
+    box-shadow: 0 0 10px rgba(90, 90, 205, 0.6); /* Glow effect */
+  }
+  
+  input[type="radio"]:checked + .radio-custom::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  
+  /* Hover effect on the custom radio */
+  .radio-custom:hover {
+    transform: scale(1.2);
+    background-color: #7a7a9d; /* Slight hover effect */
+  }
+  
+  /* Active label: when the radio is checked */
+  input[type="radio"]:checked + .radio-custom {
+    background-color: #5a5acd; /* Change color when checked */
+  }
+  
+  
 
 
 

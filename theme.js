@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "red-orange": {
             background: "#dfa08f",
             header: "#913d3d",
-            text: "#ffddcc",
+            text: "#993705",
             buttonBackground: "#f57e7e",
             buttonHover: "#2a2a3b",
             playerBackground: "#2f2132",
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     greyVioletButton.addEventListener("click", () => toggleTheme("grey-violet"));
     redOrangeButton.addEventListener("click", () => toggleTheme("red-orange"));
 
+    
     // Function to toggle between themes
     function toggleTheme(selectedTheme) {
         // Toggle back to the default theme if the same button is clicked again
