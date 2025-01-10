@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
     leftPanner.connect(leftGain).connect(audioContext.destination);
     rightPanner.connect(rightGain).connect(audioContext.destination);
 
+    // Connect video elements to the audio context
+    const leftSource = audioContext.createMediaElementSource(leftPlayer);
+    leftSource.connect(leftPanner);
+
+    const rightSource = audioContext.createMediaElementSource(rightPlayer);
+    rightSource.connect(rightPanner);
+
     // Initialize Panning Values
     leftPanner.pan.value = -1; // 100% Left
     rightPanner.pan.value = 1;  // 100% Right

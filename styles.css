@@ -118,6 +118,24 @@ header {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+#shuffle-button {
+    background-color: #5a5acd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#reset-button {
+    background-color: #5a5acd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 .tingles-button {
     background-color: #5a5acd;
     color: white;
@@ -133,6 +151,12 @@ header {
 }
 
 #submit-button:hover {
+    background-color: #7a7aed;
+}
+#shuffle-button:hover {
+    background-color: #7a7aed;
+}
+#reset-button:hover {
     background-color: #7a7aed;
 }
 
