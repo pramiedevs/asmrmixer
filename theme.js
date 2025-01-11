@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "grey-violet": {
             background: "#0e1324",
             header: "#202022",
-            text: "#d0d0ff",
+            text: "#fff",
             buttonBackground: "#f57e7e",
             buttonHover: "#b843a8",
             playerBackground: "#000",
         },
         "red-orange": {
-            background: "#dfa08f",
+            background: "#d3765c",
             header: "#913d3d",
             text: "#993705",
             buttonBackground: "#f57e7e",

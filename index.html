@@ -6,15 +6,18 @@
     <title>ASMR Mixer</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://www.youtube.com/iframe_api"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <header>
         <h1 class="logo front">ASMR MIXER</h1>
-        <p class="tagline front">
+        <p class="tagline nunito-p">
             A free tool for rediscovering the ASMR universe, curing tingle immunity, and finding ultimate relaxation.
         </p>
-        <div class="nav">
+        <div class="nav nunito-t">
             <div class="theme-toggle">
                 <button id="grey-violet">Dark Mode</button>
                 <button id="red-orange">Cozy Mode</button>
@@ -23,19 +26,196 @@
         </div>      
     </header>
     <main>
-        <div class="selections">
+        <div class="selections nunito-t">
             <h4>Try some of our selections &nbsp =)</h4>
-            <button class="tryOn">Infinite Tapping</button>
-            <button class="tryOn">Dual Medical Exams</button>
-            <button class="tryOn">Fast and Slow</button>
-            <button class="tryOn">Bilingual</button>
-            <button class="tryOn">Sci-Fi meets lo-fi</button>
-            <button class="tryOn">Music Atmosphere</button>
+            <button class="tryOn" data-url="https://www.youtube.com/watch?v=80O7qrsKDJM"
+                                  data-url-right="https://www.youtube.com/watch?v=irt8_tbEmBE" 
+                                  data-mode="dual-playlist">  
+            CHAOTIC ADHD
+            </button>
+            <button class="tryOn" data-url="https://www.youtube.com/watch?v=ybbxMnauezA" 
+                                  data-url-right="https://youtu.be/7DC3JYNdi4I?feature=shared" 
+                                  data-mode="dual-playlist">
+            MUSIC ATMOSPHERE
+            </button>
+            <button class="tryOn" data-url="https://www.youtube.com/watch?v=c4HUtBBY7Rs"
+                                  data-url-right="https://www.youtube.com/watch?v=nIRv1hvDecY" 
+                                  data-mode="dual-playlist">                
+            INFINITE TAPPING
+            </button>
+            <button class="tryOn" 
+                    data-url="https://www.youtube.com/watch?v=3G0ssc90G70" 
+                    data-url-right="https://www.youtube.com/watch?v=RKCOPKNFHiM" 
+                    data-mode="dual-playlist">
+            BILINGUAL
+            </button>
+            <button class="tryOn" data-url="https://www.youtube.com/watch?v=Vpu8ND0d9OU"
+                                  data-url-right="https://www.youtube.com/watch?v=4NxA06z2Ihw" 
+                                  data-mode="dual-playlist">
+            FAST & FURIOUS
+            </button>
+            <button class="tryOn" data-url="https://youtu.be/zD1IdVEqCqg?feature=shared" 
+                                  data-url-right="https://youtu.be/_dcJZSpf6EM?feature=shared" 
+                                  data-mode="dual-playlist">
+            BASSY TAPPING
+            </button>
         </div>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const selectionButtons = document.querySelectorAll(".tryOn");
+                const urlInput1 = document.getElementById("url-input-1");
+                const urlInput2 = document.getElementById("url-input-2");
+                const modeRadios = document.querySelectorAll('input[name="mode"]');
+            
+                // Function to reset the players to their default state (clear videos)
+                const resetPlayers = () => {
+                    // Clear the left player
+                    if (leftPlayer) {
+                        leftPlayer.stopVideo();  // Stop the current video
+                        leftPlayer.clearVideo(); // Remove the video from the player
+                        leftPlayer.destroy();    // Destroy the current player instance to reset it
+                        leftPlayer = null;       // Set to null to indicate the player is uninitialized
+                    }
+            
+                    // Clear the right player
+                    if (rightPlayer) {
+                        rightPlayer.stopVideo();  // Stop the current video
+                        rightPlayer.clearVideo(); // Remove the video from the player
+                        rightPlayer.destroy();    // Destroy the current player instance to reset it
+                        rightPlayer = null;       // Set to null to indicate the player is uninitialized
+                    }
+            
+                    // Clear any URL input fields
+                    urlInput1.value = '';
+                    urlInput2.value = '';
+                    urlInput2.style.display = 'none';  // Hide the second input (if needed)
+                };
+            
+                // Re-initialize the players and load media
+                const initializePlayersAndLoadMedia = (urlLeft, urlRight, mode) => {
+                    resetPlayers();  // Reset players before loading new media
+            
+                    // Set the correct radio button
+                    modeRadios.forEach(radio => {
+                        radio.checked = (radio.value === mode);
+                    });
+            
+                    // Set URLs based on the selected mode
+                    if (mode === "left" || mode === "single-playlist") {
+                        urlInput1.value = urlLeft;
+                        urlInput2.style.display = "none"; // Hide second input
+                        loadMedia(urlLeft, "left-player");
+                    } else if (mode === "right") {
+                        urlInput2.value = urlLeft;
+                        urlInput2.style.display = "block";
+                        loadMedia(urlLeft, "right-player", true);
+                    } else if (mode === "dual-playlist") {
+                        urlInput1.value = urlLeft;
+                        urlInput2.value = urlRight || urlLeft; // Fallback to the left URL if right is missing
+                        urlInput2.style.display = "block";
+                        loadMedia(urlLeft, "left-player");
+                        loadMedia(urlRight, "right-player", true);
+                    }
+                };
+            
+                // Directly load media for the player (bypassing the button click)
+                const loadMedia = (url, playerContainer, isRightPlayer = false) => {
+                    const videoId = extractVideoId(url);
+                    const playlistId = extractPlaylistId(url);
+            
+                    if (playlistId) {
+                        initializePlayer(playerContainer, null, playlistId, isRightPlayer);
+                    } else if (videoId) {
+                        initializePlayer(playerContainer, videoId, null, isRightPlayer);
+                    } else {
+                        alert("Invalid YouTube URL. Please use a valid link.");
+                    }
+                };
+            
+                // Extract video ID from URL
+                const extractVideoId = (url) => {
+                    const regexPatterns = [
+                        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/.*[?&]v=([^&]+)/,
+                        /(?:https?:\/\/)?youtu\.be\/([^?]+)/,
+                    ];
+                    for (const pattern of regexPatterns) {
+                        const match = url.match(pattern);
+                        if (match && match[1]) {
+                            return match[1];
+                        }
+                    }
+                    return null;
+                };
+            
+                // Extract playlist ID from URL
+                const extractPlaylistId = (url) => {
+                    const regexPattern = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/.*[?&]list=([^&]+)/;
+                    const match = url.match(regexPattern);
+                    return match ? match[1] : null;
+                };
+            
+                // Initialize player with the appropriate settings
+                const initializePlayer = (container, videoId = null, playlistId = null, isRightPlayer = false) => {
+                    const player = new YT.Player(container, {
+                        height: "100%",
+                        width: "100%",
+                        videoId: videoId || null,
+                        events: {
+                            onReady: (event) => {
+                                if (playlistId) {
+                                    event.target.loadPlaylist({
+                                        list: playlistId,
+                                        listType: "playlist",
+                                        index: isRightPlayer ? 1 : 0,
+                                    });
+                                } else if (videoId) {
+                                    event.target.playVideo();
+                                }
+                            },
+                            onStateChange: (event) => handleVideoEnd(event, player),
+                        },
+                    });
+            
+                    if (container === "left-player") {
+                        leftPlayer = player;
+                    } else if (container === "right-player") {
+                        rightPlayer = player;
+                    }
+                };
+            
+                // Handle video state change (looping, etc.)
+                const handleVideoEnd = (event, player) => {
+                    if (event.data === YT.PlayerState.ENDED) {
+                        if (player.loop) {
+                            player.seekTo(0); // Restart video from the beginning
+                            player.playVideo(); // Play the video again
+                        }
+                    }
+                };
+            
+                selectionButtons.forEach(button => {
+                    button.addEventListener("click", function () {
+                        const urlLeft = this.getAttribute("data-url");
+                        const urlRight = this.getAttribute("data-url-right") || ""; // Use empty if not provided
+                        const mode = this.getAttribute("data-mode");
+            
+                        // Re-initialize players and load new media
+                        initializePlayersAndLoadMedia(urlLeft, urlRight, mode);
+                    });
+                });
+            });
+            </script>
+            
+            
+            
+            
+        
+        
         
         <div class="disclaimer">
             <br>
-            <h4 class="h4">
+            <h4 class="nunito-p">
                 To try your own mix, simply copy the URL from your browser's address bar or use the "Share" button on YouTube to copy the link and paste it here. 
                 <br> <br>
                 Note: Some videos are restricted from being embedded and can only be played directly on YouTube.
@@ -92,17 +272,22 @@
             </div>
             <div class="controls">
                 <!-- Left Audio Settings -->
+                <!-- Left Audio Settings -->
                 <div class="audio-settings-L">
                     <label for="volume-left">Left Player Volume&nbsp;&nbsp;</label>
-                    <input type="range" id="volume-left" min="0" max="100" step="1" value="90">
+                    <span id="leftVolumeDisplay">90%</span> <!-- Dynamic display -->
+                    <input type="range" id="volume-left" min="0" max="100" step="1" value="90" oninput="leftVolumeDisplay.textContent = this.value + '%'">
                     <button id="loop-button-left" class="tingles-button">Loop Off</button>
                 </div>
+
                 <!-- Right Audio Settings -->
                 <div class="audio-settings-R">
                     <button id="loop-button-right" class="tingles-button">Loop Off</button>
-                    <input type="range" id="volume-right" min="0" max="100" step="1" value="90">
+                    <input type="range" id="volume-right" min="0" max="100" step="1" value="90" oninput="rightVolumeDisplay.textContent = this.value + '%'">
+                    <span id="rightVolumeDisplay">90%</span> <!-- Dynamic display -->
                     <label for="volume-right">Right Player Volume</label>
                 </div>
+
                 <!-- "Tingles" Button (Commented Out) -->
                 <!--
                 <div class="tingles-button-container">
@@ -112,15 +297,29 @@
             </div>
             
         </div>
-        <div class="effects controls"></div>
-        <br>
-        
-        <div class="disclaimer">
+        <div class="selections">
+            <h3 class="nunito-t">Background Noises</h3>
+        </div>
+        <div class="selections nunito-t">
+            <button class="fx">Fire Crackling</button>
+            <button class="fx">Rain</button>
+            <button class="fx">Forest Sounds</button>
+            <button class="fx">Typewriter</button>
+            <button class="fx">New Year Fireworks</button>
+            <button class="fx">Waves</button>
+            <div class="controls nunito-t">
+                <button id="pause-button">Pause</button>
+                <label for="volume-slider">Volume:</label>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01">
+                <span id="volume-display">80%</span>
+            </div>
+        </div>
+
+        <div class="disclaimer2">
             <p>
                 This website does not own any of the media being played. Videos are streamed directly from YouTube, and no content is stored on this site. 
                 We do not charge for streaming content owned by others.
             </p>
-            <br>
         </div>
         
     </main>
@@ -129,6 +328,7 @@
     </footer>
     <script src="theme.js"></script>
     <script src="loadVideo.js"></script>
+    <script src="effects.js"></script>
 
 </body>
 </html>
